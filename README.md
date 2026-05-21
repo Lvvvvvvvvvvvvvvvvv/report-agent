@@ -2,7 +2,7 @@
 
 > **G 端安防行业 · 公安监狱 · 下级向上级汇报的数据分析报告自动化生成工具**
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://report-agent-dhhzs9vpcyjrckqhn3xcw6.streamlit.app)
 
 ---
 
@@ -45,16 +45,34 @@ Excel 数据    →   统计计算（pandas）          →
 
 ---
 
-## 快速开始（本地运行）
+## 快速开始
 
-### 1. 克隆项目
+### 方式一：公有云在线体验（无需安装，打开即用）
+
+直接访问已部署好的线上版本：
+
+👉 **[https://report-agent-dhhzs9vpcyjrckqhn3xcw6.streamlit.app](https://report-agent-dhhzs9vpcyjrckqhn3xcw6.streamlit.app)**
+
+- 无需注册、无需安装任何软件
+- 内置脱敏示例数据，打开即可一键生成完整报告
+- 如需使用大模型润色功能，需在部署设置中配置自己的 Mimo API Key（见下方「部署到 Streamlit Community Cloud」章节）
+
+---
+
+### 方式二：本地部署（接入自有数据与 API）
+
+适合需要导入真实业务数据、或希望本地离线运行的场景。
+
+**第一步：克隆项目**
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/report-agent.git
+git clone https://github.com/Lvvvvvvvvvvvvvvvvv/report-agent.git
 cd report-agent
 ```
 
-### 2. 创建虚拟环境并安装依赖
+**第二步：安装依赖**
+
+建议使用 Python 虚拟环境隔离依赖：
 
 ```bash
 python3 -m venv venv
@@ -62,33 +80,23 @@ source venv/bin/activate          # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 3. （可选）配置大模型 API Key
+**第三步：配置大模型 API Key（可选）**
 
-如需启用 Mimo 大模型润色功能，在项目根目录新建 `mimo_key.txt`，把你的 Mimo Token Plan Key 粘贴进去（仅一行），保存。
+如需启用 Mimo 大模型润色功能，在项目根目录新建 `mimo_key.txt`，将你的 Mimo Token Plan Key 粘贴进去（仅一行）：
 
 ```
 tp-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-> ⚠️ `mimo_key.txt` 已在 `.gitignore` 中排除，**不会被上传到 GitHub**。请勿将 Key 分享给他人。
+> ⚠️ `mimo_key.txt` 已在 `.gitignore` 中排除，不会被同步到 Git 仓库。不配置 Key 时，工具自动切换为模板模式，所有功能照常可用，仅跳过 AI 润色环节。
 
-### 4. 生成示例数据
-
-```bash
-python generate_data.py
-```
-
-这会在 `data/` 目录生成两张示例 Excel 文件（60 名罪犯、3 个中队的脱敏虚构数据）。
-
-### 5. 启动 Web 界面
+**第四步：启动工具**
 
 ```bash
 streamlit run app.py
 ```
 
-浏览器自动打开 `http://localhost:8501`。
-
-macOS 用户也可直接**双击** `启动报告工具.command` 启动。
+稍等片刻，浏览器会自动打开工具页面。macOS 用户也可直接**双击** `启动报告工具.command` 一键启动，无需命令行。
 
 ---
 

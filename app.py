@@ -335,9 +335,9 @@ with tab2:
     S.llm_model = ai2.selectbox("模型", ["mimo-v2.5","mimo-v2-pro"], index=["mimo-v2.5","mimo-v2-pro"].index(S.llm_model) if S.llm_model in ["mimo-v2.5","mimo-v2-pro"] else 0)
     S.llm_style = ai3.selectbox("写作风格", ["规范详实","简洁精炼","严谨正式"], index=["规范详实","简洁精炼","严谨正式"].index(S.llm_style))
     if not ra.MIMO_KEY:
-        st.caption("⚠️ 未检测到 Mimo Key，将使用模板模式。把 Key 写入 mimo_key.txt 后重启即可开启。")
+        st.caption("⚠️ 未检测到 Mimo Key，将使用模板模式生成报告。把 Key 写入 mimo_key.txt 后重启即可开启大模型生成。")
     elif S.use_llm:
-        st.caption(f"💡 启用后每次生成约需 1–3 分钟（模型在思考，请耐心等待）。")
+        st.caption(f"💡 启用后大模型将根据统计数据直接撰写每个章节，每次生成约需 1–3 分钟。")
     st.markdown('</div>', unsafe_allow_html=True)
 
     # ── 章节开关 ──
@@ -393,7 +393,7 @@ with tab3:
 
             t0 = time.time()
             with st.spinner("正在统计分析、生成图表与报告……" +
-                            ("大模型润色中，请耐心等待（约1-3分钟）" if ra.USE_LLM else "")):
+                            ("大模型正在撰写报告内容，请耐心等待（约1-3分钟）" if ra.USE_LLM else "")):
                 try:
                     stats  = ra.analyze(S.train_df, S.abn_df,
                                         pass_score=S.pass_score, pass_att=S.pass_att,
@@ -409,7 +409,7 @@ with tab3:
                     S.last_gen      = time.strftime("%Y-%m-%d %H:%M")
                     elapsed = time.time() - t0
                     st.success(f"✅ 报告生成完成！用时 {elapsed:.0f} 秒" +
-                               ("（大模型润色）" if ra.USE_LLM else "（模板模式）"))
+                               ("（大模型生成）" if ra.USE_LLM else "（模板模式）"))
                 except Exception as e:
                     st.error(f"生成失败：{e}"); st.stop()
 

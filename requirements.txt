@@ -1,0 +1,7 @@
+pandas>=1.5
+numpy>=1.23
+openpyxl>=3.0
+matplotlib>=3.6
+python-docx>=0.8.11
+anthropic>=0.20
+streamlit>=1.30

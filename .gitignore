@@ -1,0 +1,40 @@
+# ── 密钥（绝对不能上传！）──
+mimo_key.txt
+.env
+*.key
+secrets.toml
+.streamlit/secrets.toml
+
+# ── Python 虚拟环境 ──
+venv/
+.venv/
+env/
+
+# ── Python 缓存 ──
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# ── 生成输出（本地产物，不上传）──
+output/
+
+# ── macOS 系统文件 ──
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ── 编辑器 / IDE ──
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── Jupyter ──
+.ipynb_checkpoints/
+*.ipynb
+
+# ── 测试临时文件 ──
+*.log
+*.tmp

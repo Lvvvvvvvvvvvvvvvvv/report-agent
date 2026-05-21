@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据分析报告智能体 · 搭建与运行全景图</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body{
+    font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;
+    background:#f4f6fb; color:#1f2733; padding:40px 24px; line-height:1.5;
+  }
+  .wrap{ max-width:1180px; margin:0 auto; }
+  h1{ font-size:30px; text-align:center; color:#1a2740; letter-spacing:1px; }
+  .subtitle{ text-align:center; color:#7a8699; margin:8px 0 36px; font-size:15px; }
+  .section{ background:#fff; border-radius:18px; padding:30px 34px 36px;
+    box-shadow:0 6px 24px rgba(31,55,99,.08); margin-bottom:34px; }
+  .sec-title{ font-size:20px; font-weight:700; color:#2d3c5a; margin-bottom:6px;
+    display:flex; align-items:center; gap:10px; }
+  .sec-title .dot{ width:10px; height:22px; border-radius:5px; background:#3b6ef0; }
+  .sec-desc{ color:#8893a6; font-size:14px; margin-bottom:26px; }
+
+  /* 流程：横向步骤 */
+  .flow{ display:flex; align-items:stretch; gap:0; flex-wrap:wrap; justify-content:center; }
+  .step{ flex:1 1 0; min-width:150px; background:#f7f9ff; border:1px solid #e3e9f7;
+    border-radius:14px; padding:18px 14px; text-align:center; position:relative; }
+  .step .num{ display:inline-block; width:30px; height:30px; line-height:30px;
+    border-radius:50%; background:#3b6ef0; color:#fff; font-weight:700; margin-bottom:10px; }
+  .step .t{ font-size:15px; font-weight:700; color:#26344f; }
+  .step .d{ font-size:12.5px; color:#8893a6; margin-top:6px; }
+  .arrow{ display:flex; align-items:center; color:#b4c0d8; font-size:24px; padding:0 6px; }
+
+  /* 架构：三层流水线 */
+  .pipe{ display:flex; align-items:center; gap:0; flex-wrap:wrap; justify-content:center; }
+  .layer{ border-radius:16px; padding:20px 18px; min-width:190px; }
+  .layer .lab{ font-size:13px; font-weight:700; letter-spacing:1px; margin-bottom:12px;
+    text-align:center; }
+  .box{ background:#fff; border-radius:11px; padding:13px 14px; margin:9px 0;
+    font-size:14px; box-shadow:0 2px 8px rgba(0,0,0,.05); }
+  .box .bt{ font-weight:700; color:#26344f; }
+  .box .bd{ font-size:12px; color:#90a; }
+  .box .bd{ color:#8893a6; }
+  .in{ background:#eaf2ff; } .in .lab{ color:#2f6bdc; }
+  .brain{ background:#fff4e8; min-width:330px; } .brain .lab{ color:#e3852b; }
+  .out{ background:#e9f8ee; } .out .lab{ color:#2faf5b; }
+  .brain .grid{ display:grid; grid-template-columns:1fr 1fr; gap:9px; }
+  .parrow{ font-size:30px; color:#b4c0d8; padding:0 10px; }
+  .fallback{ margin-top:14px; text-align:center; font-size:12.5px; color:#c98a23;
+    background:#fff7ec; border:1px dashed #f0c98a; border-radius:9px; padding:8px; }
+
+  /* 技术栈 */
+  .stack{ display:flex; flex-wrap:wrap; gap:12px; }
+  .chip{ background:#f3f5fb; border:1px solid #e3e9f7; border-radius:10px;
+    padding:10px 14px; font-size:13.5px; }
+  .chip b{ color:#2d3c5a; } .chip span{ color:#8893a6; }
+
+  .note{ font-size:13px; color:#8893a6; text-align:center; margin-top:8px; }
+  @media print{ body{background:#fff;} .section{box-shadow:none;border:1px solid #e3e9f7;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>数据分析报告智能体 · 全景图</h1>
+  <div class="subtitle">公安监狱场景 · 罪犯训练与异常行为数据分析报告自动生成</div>
+
+  <!-- 一句话 -->
+  <div class="section" style="text-align:center;">
+    <div style="font-size:16px;color:#3b6ef0;font-weight:700;">核心理念</div>
+    <div style="font-size:18px;color:#26344f;margin-top:8px;line-height:1.7;">
+      数据进 → 自动统计 + 出图 → 生成规范公文 Word 报告。<br>
+      架构上「<b style="color:#e3852b;">代码算数</b>，<b style="color:#2faf5b;">大模型写文</b>」——
+      数字由程序保证准确，大模型只润色文笔，<b>从根上规避 AI 编造数据风险</b>。
+    </div>
+  </div>
+
+  <!-- 搭建流程 -->
+  <div class="section">
+    <div class="sec-title"><span class="dot"></span>一、搭建流程（怎么做出来的）</div>
+    <div class="sec-desc">典型 MVP 迭代：先把全流程跑通，再逐步升级"大脑"，控制风险。</div>
+    <div class="flow">
+      <div class="step"><span class="num">1</span><div class="t">需求澄清</div><div class="d">锁定数据源、输出格式、目标、素材</div></div>
+      <div class="arrow">→</div>
+      <div class="step"><span class="num">2</span><div class="t">领域建模</div><div class="d">设计数据字段表 + 报告章节结构</div></div>
+      <div class="arrow">→</div>
+      <div class="step"><span class="num">3</span><div class="t">MVP 搭建</div><div class="d">规则模板先跑通"数据进→报告出"</div></div>
+      <div class="arrow">→</div>
+      <div class="step"><span class="num">4</span><div class="t">大模型集成</div><div class="d">接入 Mimo 升级文笔</div></div>
+      <div class="arrow">→</div>
+      <div class="step"><span class="num">5</span><div class="t">验证校准</div><div class="d">核对报告数字与原始统计一致</div></div>
+    </div>
+  </div>
+
+  <!-- 运行架构 -->
+  <div class="section">
+    <div class="sec-title"><span class="dot"></span>二、运行架构（它怎么跑起来的）</div>
+    <div class="sec-desc">三层流水线：输入层 → 大脑层 → 输出层；大脑层内部分四步处理。</div>
+    <div class="pipe">
+      <div class="layer in">
+        <div class="lab">① 输入层</div>
+        <div class="box"><div class="bt">业务数据</div><div class="bd">Excel / 数据库导出<br>（脱敏 / 合成样例）</div></div>
+      </div>
+      <div class="parrow">→</div>
+      <div class="layer brain">
+        <div class="lab">② 大脑层（核心）</div>
+        <div class="grid">
+          <div class="box"><div class="bt">a. 统计分析</div><div class="bd">pandas 算各项指标</div></div>
+          <div class="box"><div class="bt">b. 可视化</div><div class="bd">matplotlib 出图表</div></div>
+          <div class="box"><div class="bt">c. 起草</div><div class="bd">规则把统计变文字</div></div>
+          <div class="box"><div class="bt">d. 润色</div><div class="bd">Mimo 大模型改写</div></div>
+        </div>
+        <div class="fallback">⚠ 无 Key / 调用失败 → 自动降级回 c 模板文字，照常出报告</div>
+      </div>
+      <div class="parrow">→</div>
+      <div class="layer out">
+        <div class="lab">③ 输出层</div>
+        <div class="box"><div class="bt">Word 报告</div><div class="bd">.docx<br>标题/章节/表格/图表</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 技术栈 -->
+  <div class="section">
+    <div class="sec-title"><span class="dot"></span>三、技术栈（用了哪些零件）</div>
+    <div class="sec-desc">每个零件各司其职，了解作用即可应对追问。</div>
+    <div class="stack">
+      <div class="chip"><b>Python</b> · <span>主体语言</span></div>
+      <div class="chip"><b>pandas / numpy</b> · <span>数据处理与统计</span></div>
+      <div class="chip"><b>matplotlib</b> · <span>数据可视化出图</span></div>
+      <div class="chip"><b>python-docx</b> · <span>Word 公文自动生成</span></div>
+      <div class="chip"><b>Mimo（小米大模型）</b> · <span>文字润色的"大脑"</span></div>
+      <div class="chip"><b>anthropic SDK</b> · <span>调用 Mimo 的接线</span></div>
+      <div class="chip"><b>venv</b> · <span>独立运行环境隔离</span></div>
+    </div>
+  </div>
+
+  <div class="note">© 数据分析报告智能体演示项目 · 全程脱敏/合成数据 · API Key 仅本地存储</div>
+</div>
+</body>
+</html>
